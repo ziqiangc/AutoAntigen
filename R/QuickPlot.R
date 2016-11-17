@@ -49,3 +49,16 @@ quickPlot <- function(dataset,label,col,block,ttl=""){
                      pch="|",cex=.8,col=cols)
 
 }
+
+
+#' @importFrom shiny runApp
+#' @export
+quickVis <- function() {
+    path <- system.file(package = "AutoAntigen", "QuickPlot")
+    runApp(path)
+}
+
+
+
+
+

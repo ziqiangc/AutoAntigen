@@ -2,3 +2,5 @@
 
 export(QuickPlot)
 export(quickPlot)
+export(quickVis)
+importFrom(shiny,runApp)
