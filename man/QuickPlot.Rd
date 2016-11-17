@@ -4,10 +4,12 @@
 \alias{QuickPlot}
 \title{Plot Raw Chip for GenePix}
 \usage{
-QuickPlot(dataset, col, ttl = "")
+QuickPlot(dataset, coltype, col, ttl = "")
 }
 \arguments{
 \item{dataset}{GenePix data.}
+
+\item{coltype}{color refelcts labeling, green corresponds to IgG; red corresponds to IgM.}
 
 \item{col}{choose the column you want to look at.}
 

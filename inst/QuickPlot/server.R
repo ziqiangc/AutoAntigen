@@ -21,13 +21,13 @@ shinyServer(function(input, output){
     })
     output$plot1 <- renderPlot({
         QuickPlot(dataset=datasetInput(),
-                   #label=input$label,
+                   coltype=input$coltype,
                    col=input$col
                   )
     })
     output$plot2 <- renderPlot({
         quickPlot(dataset=datasetInput(),
-                  #label=input$label,
+                  coltype=input$coltype,
                   col=input$col,
                   block = input$block
                   )
