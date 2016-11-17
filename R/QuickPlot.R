@@ -3,17 +3,15 @@
 #' This function plot GenePix Arrays
 #'
 #' @param dataset GenePix data.
-#' @param label IgG or IgM labeling.
 #' @param col choose the column you want to look at.
 #' @param block choose the block you want to look at closer.
 #' @param ttl specific title.
 #'
 #' @export
 #'
-QuickPlot <- function(dataset,label,col,ttl=""){
-    coltype = "green"
-    if(label=="IgG") coltype = "green"
-    if(label=="IgM") coltype = "red"
+QuickPlot <- function(dataset,col,ttl=""){
+
+    coltype=ifelse(grepl("g", deparse(substitute(dataset))), "green", "red")
     if(coltype=="green") colfunc<-colorRamp(c("lightgreen","darkgreen"))
     if(coltype=="red") colfunc<-colorRamp(c("red","darkred"))
 
@@ -32,8 +30,7 @@ QuickPlot <- function(dataset,label,col,ttl=""){
 #' @export
 quickPlot <- function(dataset,label,col,block,ttl=""){
 
-    if(label=="IgG") coltype = "green"
-    if(label=="IgM") coltype = "red"
+    coltype=ifelse(grepl("g", deparse(substitute(dataset))), "green", "red")
     if(coltype=="green") colfunc<-colorRamp(c("lightgreen","darkgreen"))
     if(coltype=="red") colfunc<-colorRamp(c("red","darkred"))
 

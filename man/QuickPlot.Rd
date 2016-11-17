@@ -4,12 +4,10 @@
 \alias{QuickPlot}
 \title{Plot Raw Chip for GenePix}
 \usage{
-QuickPlot(dataset, label, col, ttl = "")
+QuickPlot(dataset, col, ttl = "")
 }
 \arguments{
 \item{dataset}{GenePix data.}
-
-\item{label}{IgG or IgM labeling.}
 
 \item{col}{choose the column you want to look at.}
 
