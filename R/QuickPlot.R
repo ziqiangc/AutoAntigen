@@ -29,7 +29,7 @@ QuickPlot <- function(dataset,coltype,col,ttl=""){
 }
 
 #' @export
-quickPlot <- function(dataset,coltype,col,block,ttl=""){
+quickPlot <- function(dataset,coltype,col,block){
 
     # coltype=ifelse(grepl("g", deparse(substitute(dataset))), "green", "red")
     if(coltype=="green") colfunc<-colorRamp(c("lightgreen","darkgreen"))
@@ -42,7 +42,7 @@ quickPlot <- function(dataset,coltype,col,block,ttl=""){
     cols=rgb(rgb_cols,maxColorValue = 256)
 
     blockplot<- plot(subset(rawS,Block==block)[,6],subset(rawS,Block==block)[,7],
-                     main=c(ttl,colnames(rawS)[col]),
+                     main=paste(colnames(rawS)[col]," | Block: ",block),
                      xlab="x-coord",ylab="y-coord",
                      pch="|",cex=.8,col=cols)
 

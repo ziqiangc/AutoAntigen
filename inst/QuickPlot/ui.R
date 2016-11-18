@@ -27,11 +27,16 @@ shinyUI(fluidPage(
 
     ),
 
-    mainPanel("Plot",
-        tabsetPanel(
-            tabPanel("Main plot", plotOutput("plot1")),
-            tabPanel("Block plot", plotOutput("plot2"))
-        )
+    mainPanel(
+              fluidRow(
+                  column(12,
+                         fluidRow(
+                             column(12, h2("Main plot"), plotOutput("plot1", height = "600px")),
+                             column(12, h2("Block plot"), plotOutput("plot2"))
+                         )
+                  )
+              )
+
     )
 
     )
