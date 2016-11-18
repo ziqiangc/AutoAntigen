@@ -22,7 +22,7 @@ QuickPlot <- function(dataset,coltype,col,ttl=""){
     rgb_cols=colfunc(rx)
     cols=rgb(rgb_cols,maxColorValue = 256)
     mainplot <- plot(rawS[,6],rawS[,7],
-                     main=c(ttl,colnames(rawS)[col]),
+                     main=c(ttl,col),
                      xlab="x-coord",ylab="y-coord",
                      pch=20,cex=0.5,col=cols)
 
@@ -42,7 +42,7 @@ quickPlot <- function(dataset,coltype,col,block){
     cols=rgb(rgb_cols,maxColorValue = 256)
 
     blockplot<- plot(subset(rawS,Block==block)[,6],subset(rawS,Block==block)[,7],
-                     main=paste(colnames(rawS)[col]," | Block: ",block),
+                     main=paste(col," | Block: ",block),
                      xlab="x-coord",ylab="y-coord",
                      pch="|",cex=.8,col=cols)
 
