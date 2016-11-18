@@ -33,7 +33,9 @@ shinyUI(fluidPage(
 
         numericInput("block",
                      label = h4("Block:"),
-                     value = 1)
+                     value = 1),
+
+        plotOutput("plot2")
 
     ),
 
@@ -41,8 +43,8 @@ shinyUI(fluidPage(
               fluidRow(
                   column(12,
                          fluidRow(
-                             column(12, h2("Main plot"), plotOutput("plot1", height = "600px")),
-                             column(12, h2("Block plot"), plotOutput("plot2"))
+                             column(12, h2("Main plot"), plotOutput("plot1", height = "600px"))
+                             # column(12, h2("Block plot"), plotOutput("plot2"))
                          )
                   )
               )

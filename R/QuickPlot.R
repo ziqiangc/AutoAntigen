@@ -44,7 +44,7 @@ quickPlot <- function(dataset,coltype,col,block){
     blockplot<- plot(subset(rawS,Block==block)[,6],subset(rawS,Block==block)[,7],
                      main=paste(col," | Block: ",block),
                      xlab="x-coord",ylab="y-coord",
-                     pch="|",cex=.8,col=cols)
+                     pch=15,cex=1.2,col=cols)
 
 }
 
