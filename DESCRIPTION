@@ -1,7 +1,7 @@
 Package: AutoAntigen
 Type: Package
 Title: Analysis AutoAntigen Data
-Version: 0.0.2.2
+Version: 0.0.2.3
 Author: c(person("Ziqiang", "Chen", email = "ziqiangc@buffalo.edu", role = c("aut", "cre")),person("Daniel", "Gaile", email = "dpgaile@buffalo.edu", role = c("aut")))
 Maintainer: Ziqiang Chen <ziqiangc@buffalo.edu>
 Description: Provide visualization and analysis tools for AutoAntigen studies, especially for GenePix data.
