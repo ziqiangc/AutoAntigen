@@ -6,10 +6,12 @@ library(datasets)
 
 shinyServer(function(input, output){
 
-    Slide1_IgG=read.table("data/Slide1_532.gpr",sep="\t",skip=32,header=T)
-    Slide1_IgM=read.table("data/Slide1_635.gpr",sep="\t",skip=32,header=T)
-    Slide2_IgG=read.table("data/Slide2_532.gpr",sep="\t",skip=32,header=T)
-    Slide2_IgM=read.table("data/Slide2_635.gpr",sep="\t",skip=32,header=T)
+    # Slide1_IgG=read.table("data/Slide1_532.gpr",sep="\t",skip=32,header=T)
+    # Slide1_IgM=read.table("data/Slide1_635.gpr",sep="\t",skip=32,header=T)
+    # Slide2_IgG=read.table("data/Slide2_532.gpr",sep="\t",skip=32,header=T)
+    # Slide2_IgM=read.table("data/Slide2_635.gpr",sep="\t",skip=32,header=T)
+
+
 
     data_sets <- c("Slide1_IgG","Slide1_IgM","Slide2_IgG","Slide2_IgM")
 
