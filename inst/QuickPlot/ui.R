@@ -7,8 +7,13 @@ shinyUI(fluidPage(
     fluidRow(
         column(
             4,
+
             wellPanel(
                 uiOutput("choose_dataset"),
+
+                fileInput('uploadfile', 'Or choose your own file',
+                          accept="gpr"),
+
 
                 uiOutput("choose_columns"),
 

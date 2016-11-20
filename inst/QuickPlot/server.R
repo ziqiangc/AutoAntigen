@@ -11,8 +11,6 @@ shinyServer(function(input, output){
     # Slide2_IgG=read.table("data/Slide2_532.gpr",sep="\t",skip=32,header=T)
     # Slide2_IgM=read.table("data/Slide2_635.gpr",sep="\t",skip=32,header=T)
 
-
-
     data_sets <- c("Slide1_IgG","Slide1_IgM","Slide2_IgG","Slide2_IgM")
 
     # Drop-down selection box for which data set
@@ -26,8 +24,16 @@ shinyServer(function(input, output){
         if(is.null(input$dataset))
             return()
 
+        # Or choose your own file
+        inFile <- input$uploadfile
+
         # Get the data set with the appropriate name
-        dat <- get(input$dataset)
+        if (is.null(inFile)) {
+            dat <- get(input$dataset)
+        } else {
+            dat <- read.table(inFile$datapath,sep="\t",skip=32,header=T)
+        }
+
         colnames <- names(dat)[9:37]
 
         # Create the menu and select the first one by default
@@ -42,8 +48,15 @@ shinyServer(function(input, output){
         if(is.null(input$dataset))
             return()
 
-        # Get the data set with the appropriate name
-        dat <- get(input$dataset)
+        # Or choose your own file
+        inFile <- input$uploadfile
+
+        # Get the data set
+        if (is.null(inFile)) {
+            dat <- get(input$dataset)
+        } else {
+            dat <- read.table(inFile$datapath,sep="\t",skip=32,header=T)
+        }
 
         coltype <- ifelse(grepl("532", colnames(dat)[9]), "green", "red")
 
@@ -74,8 +87,15 @@ shinyServer(function(input, output){
         if(is.null(input$dataset))
             return()
 
+        # Or choose your own file
+        inFile <- input$uploadfile
+
         # Get the data set
-        dat <- get(input$dataset)
+        if (is.null(inFile)) {
+            dat <- get(input$dataset)
+        } else {
+            dat <- read.table(inFile$datapath,sep="\t",skip=32,header=T)
+        }
 
         # Make sure columns are correct for data set (when data set changes, the
         # columns will initially be for the previous data set)
@@ -93,8 +113,15 @@ shinyServer(function(input, output){
         if(is.null(input$dataset))
             return()
 
+        # Or choose your own file
+        inFile <- input$uploadfile
+
         # Get the data set
-        dat <- get(input$dataset)
+        if (is.null(inFile)) {
+            dat <- get(input$dataset)
+        } else {
+            dat <- read.table(inFile$datapath,sep="\t",skip=32,header=T)
+        }
 
         # Make sure columns are correct for data set (when data set changes, the
         # columns will initially be for the previous data set)
