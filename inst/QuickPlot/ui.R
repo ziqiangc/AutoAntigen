@@ -23,13 +23,36 @@ shinyUI(fluidPage(
             wellPanel(
                 numericInput("block",
                              label = h4("Block:"),
-                             value = 1),
-
-                plotOutput("plot2")
+                             value = 1)
             )
         ),
         column(8,
-            h2("Main plot"), plotOutput("plot1", height = "780px")
+               tabsetPanel(
+
+                   tabPanel("Simple plot",
+                            fluidRow(
+                                column(12,
+                                       h2("Main plot"), plotOutput("plot1", height = "640px")
+                                ),
+                                column(12,
+                                       h2("Block plot"), plotOutput("plot2",height = "480px")
+                                )
+                            )
+                   ),
+
+                   tabPanel("Heatmap",
+                            fluidRow(
+                                column(12,
+                                       h2("Main plot"), plotOutput("heat1", height = "640px")
+                                ),
+                                column(12,
+                                       h2("Block plot"), plotOutput("heat2",height = "480px")
+                                )
+                            )
+
+                   )
+
+               )
 
         )
     )

@@ -135,4 +135,61 @@ shinyServer(function(input, output){
                   )
     })
 
+
+    # Heatmap
+
+    output$heat1 <- renderPlot({
+        # If missing input, return to avoid error later in function
+        if(is.null(input$dataset))
+            return()
+
+        # Or choose your own file
+        inFile <- input$uploadfile
+
+        # Get the data set
+        if (is.null(inFile)) {
+            dat <- get(input$dataset)
+        } else {
+            dat <- read.table(inFile$datapath,sep="\t",skip=32,header=T)
+        }
+
+        # Make sure columns are correct for data set (when data set changes, the
+        # columns will initially be for the previous data set)
+        if (is.null(input$columns) || !(input$columns %in% names(dat)))
+            return()
+
+        QuickHeat(dataset=dat,
+                  col=input$columns
+        )
+    })
+
+
+    output$heat2 <- renderPlot({
+        # If missing input, return to avoid error later in function
+        if(is.null(input$dataset))
+            return()
+
+        # Or choose your own file
+        inFile <- input$uploadfile
+
+        # Get the data set
+        if (is.null(inFile)) {
+            dat <- get(input$dataset)
+        } else {
+            dat <- read.table(inFile$datapath,sep="\t",skip=32,header=T)
+        }
+
+        # Make sure columns are correct for data set (when data set changes, the
+        # columns will initially be for the previous data set)
+        if (is.null(input$columns) || !(input$columns %in% names(dat)))
+            return()
+
+        quickHeat(dataset=dat,
+                  col=input$columns,
+                  block = input$block
+        )
+    })
+
+
+
 })
