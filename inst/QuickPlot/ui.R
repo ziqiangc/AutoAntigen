@@ -17,13 +17,28 @@ shinyUI(fluidPage(
 
                 uiOutput("choose_columns"),
 
-                uiOutput("choose_coltype")
-            ),
-            # br(),
-            wellPanel(
                 numericInput("block",
                              label = h4("Block:"),
                              value = 1)
+
+
+            ),
+            # br(),
+            tabsetPanel(
+
+                tabPanel("Simple plot",
+                    uiOutput("choose_coltype")
+                ),
+
+                tabPanel("Heatmap",
+                    selectInput("useRank",
+                                label = "Use rank matrix or not",
+                                choices = list("No rank, use original" = "n",
+                                               "Rank whole matrix" = "a",
+                                               "Rank with sample" = "s"),
+                                selected = "n")
+                )
+
             )
         ),
         column(8,

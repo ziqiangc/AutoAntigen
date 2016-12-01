@@ -4,10 +4,15 @@
 \alias{QuickHeat}
 \title{Simple heatmap for GenePix}
 \usage{
-QuickHeat(dataset, coltypes = c("darkolivegreen", "darkred"), col, ttl = "")
+QuickHeat(dataset, useRank = c("norank", "all", "sample"),
+  coltypes = c("darkolivegreen", "darkred"), col, ttl = "")
 }
 \arguments{
 \item{dataset}{GenePix data.}
+
+\item{useRank}{specify if use rank matrix to draw heatmap.
+must be one of \code{"norank"} (use original martix, default),
+\code{"all"} or \code{"sample"}.}
 
 \item{col}{choose the column you want to look at.}
 

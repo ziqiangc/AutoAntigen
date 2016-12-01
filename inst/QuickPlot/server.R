@@ -159,6 +159,7 @@ shinyServer(function(input, output){
             return()
 
         QuickHeat(dataset=dat,
+                  useRank=input$useRank,
                   col=input$columns
         )
     })
@@ -185,6 +186,7 @@ shinyServer(function(input, output){
             return()
 
         quickHeat(dataset=dat,
+                  useRank=input$useRank,
                   col=input$columns,
                   block = input$block
         )

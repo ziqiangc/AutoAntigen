@@ -3,6 +3,9 @@
 #' A heat map for GenePix Arrays
 #'
 #' @param dataset GenePix data.
+#' @param useRank specify if use rank matrix to draw heatmap.
+#'          must be one of \code{"norank"} (use original martix, default),
+#'          \code{"all"} or \code{"sample"}.
 #' @param coltype color refelcts labeling, green corresponds to IgG; red corresponds to IgM.
 #' @param col choose the column you want to look at.
 #' @param block choose the block you want to look at closer.
@@ -11,16 +14,21 @@
 #' @importFrom gplots heatmap.2
 #' @export
 #'
-QuickHeat <- function(dataset, coltypes = c("darkolivegreen", "darkred"), col, ttl="") {
+QuickHeat <- function(dataset, useRank = c("norank","all","sample"),
+                          coltypes = c("darkolivegreen", "darkred"), col, ttl="") {
+
+    useRank = match.arg(useRank)
 
     x <- dataset
+    XROW <- length(unique(x$Row))
+    XCOL <- length(unique(x$Column))
     B <- length(unique(x$Block))
     dl <- list()
     for (b in 1:B) {
         xb <- subset(x, Block==b)
-        dm <- matrix(0, nrow=14, ncol=14)
-        for (i in 1:length(unique(x$Row))) {
-            for (j in 1:length(unique(x$Column))) {
+        dm <- matrix(0, nrow=XROW, ncol=XCOL)
+        for (i in 1:XROW) {
+            for (j in 1:XCOL) {
                 xbr <- xb[which(xb$Row==i),]
                 xbrc <- xbr[which(xbr$Column==j),]
                 dm[i,j] <- xbrc[,col]
@@ -44,9 +52,16 @@ QuickHeat <- function(dataset, coltypes = c("darkolivegreen", "darkred"), col, t
 
     DM <- cbind(DM.l, DM.r)
 
+    if(useRank=="norank") mat = DM
+    if(useRank=="all") {
+        mat = DM
+        mat[] = rank(DM, ties.method = "min")
+    }
+    if(useRank=="sample") mat = apply(DM, 2, rank, ties.method = "min" )
+
     my_palette <- colorRampPalette(coltypes)(n = 256)
 
-    heatmap.2(DM, Rowv = NA, Colv = NA,
+    heatmap.2(mat, Rowv = NA, Colv = NA,
               main=c(ttl,col),
               col = my_palette,
               dendrogram="none",
@@ -65,14 +80,18 @@ QuickHeat <- function(dataset, coltypes = c("darkolivegreen", "darkred"), col, t
 
 
 #' @export
-quickHeat <- function(dataset,coltypes = c("darkolivegreen", "darkred"),col,block) {
+quickHeat <- function(dataset, useRank = c("norank","all","sample"),
+                      coltypes = c("darkolivegreen", "darkred"),col,block) {
 
+    useRank = match.arg(useRank)
     x <- dataset
-    dm <- matrix(0, nrow=14, ncol=14)
+    XROW <- length(unique(x$Row))
+    XCOL <- length(unique(x$Column))
+    dm <- matrix(0, nrow=XROW, ncol=XCOL)
     xb <- subset(x, Block==block)
 
-    for (i in 1:length(unique(x$Row))) {
-        for (j in 1:length(unique(x$Column))) {
+    for (i in 1:XROW) {
+        for (j in 1:XCOL) {
             xbr <- xb[which(xb$Row==i),]
             xbrc <- xbr[which(xbr$Column==j),]
             dm[i,j] <- xbrc[,col]
@@ -80,9 +99,17 @@ quickHeat <- function(dataset,coltypes = c("darkolivegreen", "darkred"),col,bloc
         }
     }
 
+    if(useRank=="norank") mat = dm
+    if(useRank=="all") {
+        mat = dm
+        mat[] = rank(dm, ties.method = "min")
+    }
+    if(useRank=="sample") mat = apply(dm, 2, rank, ties.method = "min" )
+
+
     my_palette <- colorRampPalette(coltypes)(n = 256)
 
-    heatmap.2(dm, Rowv = NA, Colv = NA,
+    heatmap.2(mat, Rowv = NA, Colv = NA,
               main = paste(col," | Block: ",block),
               col = my_palette,
               dendrogram="none",
