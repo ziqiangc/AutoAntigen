@@ -1,8 +1,7 @@
 library(shiny)
-library(AutoAntigen)
 library(datasets)
 library(gplots)
-
+library(AutoAntigen)
 
 shinyServer(function(input, output){
 
