@@ -57,6 +57,12 @@ quickVis <- function() {
 }
 
 
+#' @importFrom shiny runApp
+#' @export
+quickVis2 <- function() {
+    path <- system.file(package = "AutoAntigen", "QuickPlot2")
+    runApp(path)
+}
 
 
 
