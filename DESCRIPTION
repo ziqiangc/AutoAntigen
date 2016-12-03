@@ -5,6 +5,8 @@ Version: 0.0.5.2
 Author: c(person("Ziqiang", "Chen", email = "ziqiangc@buffalo.edu", role = c("aut", "cre")),person("Daniel", "Gaile", email = "dpgaile@buffalo.edu", role = c("aut")))
 Maintainer: Ziqiang Chen <ziqiangc@buffalo.edu>
 Description: Provide visualization and analysis tools for AutoAntigen studies, especially for GenePix data.
+Imports:
+    gplots
 License: GPL (>= 2)
 LazyData: TRUE
 RoxygenNote: 5.0.1
